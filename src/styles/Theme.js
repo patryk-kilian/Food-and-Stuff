@@ -3,8 +3,8 @@ import { ThemeProvider } from "emotion-theming";
 
 const theme = {
   colors: {
-    primary: "orangered",
-    secondary: "blue"
+    primary: "#fff",
+    secondary: "#fff"
   }
 };
 
