@@ -1,11 +1,15 @@
-import React from "react";
-import { ThemeProvider } from "emotion-theming";
+import React from 'react';
+import { ThemeProvider } from 'emotion-theming';
+
+const colors = {
+  primary: '#fff',
+};
 
 const theme = {
-  colors: {
-    primary: "#fff",
-    secondary: "#fff"
-  }
+  colors,
+  container: {
+    base: '75rem',
+  },
 };
 
 const Theme = ({ children }) => {
