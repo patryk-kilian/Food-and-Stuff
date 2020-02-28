@@ -1,20 +1,32 @@
 /**@jsx jsx */
 // eslint-disable-next-line
-import React from "react";
-import { jsx } from "@emotion/core";
-import { useTheme } from "emotion-theming";
+
+import { jsx } from '@emotion/core';
+import { useTheme } from 'emotion-theming';
 
 const Footer = () => {
   const theme = useTheme();
 
   return (
-    <div
+    <footer
       css={{
-        background: theme.colors.secondary
+        background: theme.colors.primary,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'fixed',
+        width: '100%',
+        bottom: '0',
       }}
     >
-      <h1>footer</h1>
-    </div>
+      <p
+        css={{
+          color: '#fff',
+        }}
+      >
+        Patryk Kilian 2020
+      </p>
+    </footer>
   );
 };
 

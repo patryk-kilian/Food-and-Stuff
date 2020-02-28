@@ -2,7 +2,11 @@ import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
 
 const colors = {
-  primary: '#fff',
+  primary: '#2d4059',
+  primaryLight: '#446086',
+  secondary: '#f07b3f',
+  secondaryDarker: '#ee651f',
+  white: '#fff',
 };
 
 const theme = {
