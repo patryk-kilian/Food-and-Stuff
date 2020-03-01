@@ -1,28 +1,26 @@
 /**@jsx jsx */
 import { jsx } from '@emotion/core';
 import { useContext } from 'react';
-import { Link, useNavigate } from '@reach/router';
+import { Link } from '@reach/router';
 import ProductsContext from '../../context/ProductsProvider/productsContext';
 import { PageHeading } from '../../styles/Typography';
 import ProductsList from '../../components/ProductsList';
 import Container from '../../components/Container';
 
-const Food = () => {
-  const navigate = useNavigate();
-
+const Stuff = () => {
   const productsContext = useContext(ProductsContext);
 
   const products = productsContext.products.filter(
-    product => product.category === 'food'
+    product => product.category === 'stuff'
   );
 
   return (
     <Container>
-      <button onClick={() => navigate(-1)}>back</button>
+      <Link to='/'>Home</Link>
       <PageHeading text='Food' />
       <ProductsList products={products} />
     </Container>
   );
 };
 
-export default Food;
+export default Stuff;

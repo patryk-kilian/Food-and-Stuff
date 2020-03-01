@@ -1,7 +1,6 @@
 /**@jsx jsx */
 import { useContext } from 'react';
 import { jsx } from '@emotion/core';
-import { Link } from '@reach/router';
 import { useTheme } from 'emotion-theming';
 import Category from '../../components/Category';
 import ProductsList from '../../components/ProductsList';
@@ -23,6 +22,7 @@ const Home = () => {
         maxWidth: container.base,
         margin: '0 auto',
         textAlign: 'center',
+        minHeight: '100vh',
       }}
     >
       <h1

@@ -2,6 +2,7 @@
 
 import { jsx } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
+import Product from '../Product';
 
 const ProductsList = ({ products }) => {
   const theme = useTheme();
@@ -14,36 +15,12 @@ const ProductsList = ({ products }) => {
         gridTemplateColumns: '1fr 1fr 1fr',
         justifyItems: 'center',
         margin: '50px 0',
+        rowGap: '50px',
       }}
     >
-      {products.map(product => {
-        return (
-          <li
-            css={{
-              position: 'relative',
-            }}
-          >
-            <img src={product.image} alt='' />
-            <p>{product.name}</p>
-            <p>${product.price}</p>
-            <span
-              css={{
-                position: 'absolute',
-                top: '20px',
-                right: '0',
-                transform: 'rotate(30deg)',
-                background: colors.primaryLight,
-                color: colors.white,
-                textTransform: 'uppercase',
-                fontWeight: '700',
-                padding: '5px 30px',
-              }}
-            >
-              bestseller
-            </span>
-          </li>
-        );
-      })}
+      {products.map(product => (
+        <Product key={product.id} product={product} />
+      ))}
     </ul>
   );
 };

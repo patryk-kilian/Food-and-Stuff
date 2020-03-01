@@ -14,9 +14,6 @@ const Footer = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'fixed',
-        width: '100%',
-        bottom: '0',
       }}
     >
       <p

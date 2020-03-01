@@ -1,5 +1,4 @@
 /**@jsx jsx */
-import React from 'react';
 import { jsx } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
 import { FaShoppingBag } from 'react-icons/fa';
@@ -15,6 +14,10 @@ const Header = () => {
         backgroundColor: colors.primary,
         padding: '10px 0',
         color: colors.white,
+        position: 'sticky',
+        top: '0',
+        width: '100%',
+        zIndex: '10',
       }}
     >
       <div
