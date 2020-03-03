@@ -1,9 +1,11 @@
 /**@jsx jsx */
 
 import { jsx } from '@emotion/core';
+import { useContext } from 'react';
 import { useTheme } from 'emotion-theming';
 import { FaCartPlus } from 'react-icons/fa';
-import Button from '../Button';
+import { StyledButton } from '../../styles/Button';
+import CartContext from '../../context/CartProvider/cartContext';
 
 const Product = ({ product }) => {
   const theme = useTheme();
@@ -11,6 +13,11 @@ const Product = ({ product }) => {
   const { name, image, price, bestseller, id } = product;
 
   const { colors } = theme;
+
+  const cartContext = useContext(CartContext);
+
+  const { addToCart } = cartContext;
+
   return (
     <li
       css={{
@@ -51,21 +58,24 @@ const Product = ({ product }) => {
           transform: 'translate(-50%,-50%)',
         }}
       >
-        <Button
-          text="Show details"
+        <StyledButton
           css={{
-            opacity: 0,
+            opacity: '0',
           }}
-        />
-        <Button
+          color={theme.colors.primaryDarker}
+        >
+          Show details
+        </StyledButton>
+        <StyledButton
           css={{
+            opacity: '0',
             marginTop: '10px',
-            opacity: 0,
           }}
-          iconSize="1.2rem"
-          icon={FaCartPlus}
-          text="Add to cart"
-        />
+          color={theme.colors.primaryDarker}
+          onClick={() => addToCart(product)}
+        >
+          Add to cart <FaCartPlus />
+        </StyledButton>
       </div>
 
       <img src={image} alt="" />
