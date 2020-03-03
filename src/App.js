@@ -6,6 +6,8 @@ import Food from './pages/Food';
 import Clothes from './pages/Clothes';
 import Stuff from './pages/Stuff';
 import Theme from './styles/Theme';
+import Cart from './components/Cart';
+import CartMask from './components/Cart/CartMask';
 import ProductsProvider from './context/ProductsProvider';
 import { Router } from '@reach/router';
 
@@ -16,12 +18,14 @@ const App = () => {
         <ProductsProvider>
           <Header />
           <Router>
-            <Home path='/' />
-            <Food path='/food' />
-            <Clothes path='clothes' />
-            <Stuff path='stuff/' />
+            <Home path="/" />
+            <Food path="/food" />
+            <Clothes path="clothes" />
+            <Stuff path="stuff/" />
           </Router>
           <Footer />
+          <Cart />
+          <CartMask />
         </ProductsProvider>
       </Theme>
     </div>

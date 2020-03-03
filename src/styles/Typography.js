@@ -1,13 +1,6 @@
-/**@jsx jsx */
-import { jsx } from '@emotion/core';
+import styled from "@emotion/styled";
 
-export const PageHeading = ({ text }) => (
-  <h2
-    css={{
-      textAlign: 'center',
-      fontSize: '3rem',
-    }}
-  >
-    {text}
-  </h2>
-);
+export const PageHeading = styled.h2`
+  font-size: 3rem;
+  text-align: center;
+`;

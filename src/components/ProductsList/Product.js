@@ -3,11 +3,12 @@
 import { jsx } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
 import { FaCartPlus } from 'react-icons/fa';
+import Button from '../Button';
 
 const Product = ({ product }) => {
   const theme = useTheme();
 
-  const { name, image, price, bestseller } = product;
+  const { name, image, price, bestseller, id } = product;
 
   const { colors } = theme;
   return (
@@ -22,7 +23,7 @@ const Product = ({ product }) => {
           position: 'absolute',
           top: '0',
           left: '0',
-          background: 'rgba(255,255,255, .6)',
+          background: 'rgba(255,255,255, .8)',
           opacity: '0',
           transition: 'opacity .3s',
           zIndex: '2',
@@ -50,66 +51,24 @@ const Product = ({ product }) => {
           transform: 'translate(-50%,-50%)',
         }}
       >
-        <button
+        <Button
+          text="Show details"
           css={{
-            maxWidth: '200px',
-            width: '100%',
-            border: `2px solid ${colors.primaryDarker}`,
-            textTransform: 'uppercase',
-            color: colors.primaryDarker,
-            padding: '8px',
-            fontSize: '1rem',
-            fontWeight: '900',
-            zIndex: '3',
-            opacity: '0',
-            transition: 'all .3s',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: '5px',
-            ':hover': {
-              background: colors.primaryDarker,
-              color: '#fff',
-            },
+            opacity: 0,
           }}
-        >
-          Add to cart{' '}
-          <FaCartPlus
-            css={{
-              fontSize: '1.2rem',
-              marginLeft: '5px',
-            }}
-          />
-        </button>
-        <button
+        />
+        <Button
           css={{
-            maxWidth: '200px',
-            width: '100%',
-            border: `2px solid ${colors.primaryDarker}`,
-            textTransform: 'uppercase',
-            color: colors.primaryDarker,
-            padding: '8px',
-            fontSize: '1rem',
-            fontWeight: '900',
-            zIndex: '3',
-            opacity: '0',
-            transition: 'all .3s',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: '5px',
             marginTop: '10px',
-            ':hover': {
-              background: colors.primaryDarker,
-              color: '#fff',
-            },
+            opacity: 0,
           }}
-        >
-          Show product
-        </button>
+          iconSize="1.2rem"
+          icon={FaCartPlus}
+          text="Add to cart"
+        />
       </div>
 
-      <img src={image} alt='' />
+      <img src={image} alt="" />
       <p
         css={{
           textTransform: 'uppercase',

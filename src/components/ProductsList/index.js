@@ -1,13 +1,9 @@
 /**@jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { useTheme } from 'emotion-theming';
-import Product from '../Product';
+import Product from './Product';
 
 const ProductsList = ({ products }) => {
-  const theme = useTheme();
-
-  const { colors } = theme;
   return (
     <ul
       css={{
