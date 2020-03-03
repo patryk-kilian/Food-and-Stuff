@@ -1,12 +1,18 @@
 /**@jsx jsx */
 import { jsx } from '@emotion/core';
+import { useContext } from 'react';
 import { useTheme } from 'emotion-theming';
 import { FaShoppingBag } from 'react-icons/fa';
+import CartContext from '../../context/CartProvider/cartContext';
 
 const Header = () => {
   const theme = useTheme();
 
   const { colors, container } = theme;
+
+  const cartContext = useContext(CartContext);
+
+  const { cartAmount } = cartContext;
 
   return (
     <header
@@ -78,7 +84,7 @@ const Header = () => {
                 alignItems: 'center',
               }}
             >
-              0
+              {cartAmount}
             </span>
           </button>
         </div>

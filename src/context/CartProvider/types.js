@@ -1,1 +1,3 @@
 export const ADD_TO_CART = 'ADD_TO_CART';
+export const INCREASE_ITEM_AMOUNT = 'INCREASE_AMOUNT';
+export const SET_CART_AMOUNT = 'SET_CART_AMOUNT';
