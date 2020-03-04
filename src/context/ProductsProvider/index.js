@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { createClient } from "contentful";
-import productsContext from "./productsContext";
+import React, { useEffect, useState } from 'react';
+import { createClient } from 'contentful';
+import productsContext from './productsContext';
 
 const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
@@ -8,21 +8,22 @@ const ProductsProvider = ({ children }) => {
   useEffect(() => {
     const client = createClient({
       space: process.env.REACT_APP_SPACE_ID,
-      accessToken: process.env.REACT_APP_ACCESS_TOKEN
+      accessToken: process.env.REACT_APP_ACCESS_TOKEN,
     });
 
     client
       .getEntries({
-        content_type: "product"
+        content_type: 'product',
       })
       .then(response =>
         response.items.map(el => {
           const item = {
             ...el.fields,
-            image: el.fields.image.fields.file.url
+            image: el.fields.image.fields.file.url,
+            amount: 0,
           };
           return item;
-        })
+        }),
       )
       .then(products => {
         setProducts(products);

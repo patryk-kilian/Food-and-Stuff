@@ -26,8 +26,8 @@ const App = () => {
               <Stuff path="stuff/" />
             </Router>
             <Footer />
-            {/* <Cart /> */}
-            {/* <CartMask /> */}
+            <Cart />
+            <CartMask />
           </CartProvider>
         </ProductsProvider>
       </Theme>

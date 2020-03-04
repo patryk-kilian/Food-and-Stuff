@@ -12,7 +12,7 @@ const Header = () => {
 
   const cartContext = useContext(CartContext);
 
-  const { cartAmount } = cartContext;
+  const { cartAmount, toggleCart } = cartContext;
 
   return (
     <header
@@ -57,6 +57,7 @@ const Header = () => {
             cart
           </p>
           <button
+            onClick={() => toggleCart()}
             css={{
               position: 'relative',
             }}

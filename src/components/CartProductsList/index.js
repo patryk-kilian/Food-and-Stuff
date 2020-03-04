@@ -3,10 +3,16 @@ import { jsx } from '@emotion/core';
 
 import CartProduct from './CartProduct';
 
-const CartProductsList = () => {
+const CartProductsList = ({ products }) => {
   return (
     <ul>
-      <CartProduct />
+      {products.length > 0 ? (
+        products.map(product => (
+          <CartProduct key={product.id} product={product} />
+        ))
+      ) : (
+        <p>Cart is empty</p>
+      )}
     </ul>
   );
 };

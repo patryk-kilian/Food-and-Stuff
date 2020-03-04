@@ -1,27 +1,26 @@
 /**@jsx jsx */
 import { jsx } from '@emotion/core';
+import { useContext } from 'react';
 import { useTheme } from 'emotion-theming';
-import {
-  FaTimes,
-  FaCreditCard,
-  FaTrash,
-  FaPlus,
-  FaMinus,
-} from 'react-icons/fa';
+import { FaTimes, FaCreditCard } from 'react-icons/fa';
 import Button from '../Button';
+import CartContext from '../../context/CartProvider/cartContext';
+import CartProductsList from '../CartProductsList/index';
 
-const Cart = ({ children }) => {
+const Cart = () => {
   const theme = useTheme();
 
   const { colors } = theme;
 
-  return (
+  const cartContext = useContext(CartContext);
+
+  const { isCartOpen, toggleCart, cartItems } = cartContext;
+
+  return isCartOpen ? (
     <aside
       css={{
-        height: '3rem',
         maxWidth: '25rem',
         width: '100%',
-        background: colors.primary,
         height: '100vh',
         zIndex: '501',
         position: 'fixed',
@@ -51,6 +50,7 @@ const Cart = ({ children }) => {
           Your cart&nbsp;<span>(&nbsp;1&nbsp;)</span>
         </h3>
         <button
+          onClick={() => toggleCart()}
           css={{
             fontSize: '1.6rem',
             display: 'flex',
@@ -64,129 +64,7 @@ const Cart = ({ children }) => {
           <FaTimes />
         </button>
       </header>
-      <ul
-        css={{
-          padding: '0 12px',
-        }}
-      >
-        <li
-          css={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 3fr 1fr',
-          }}
-        >
-          <div>
-            <img
-              css={{
-                height: '100px',
-              }}
-              src="//images.ctfassets.net/5w7hgh9abc3b/R7aTIc1EzkljeiQL5g7iV/cd995371d09dc82c6c5eb9238a34e36a/food4.png"
-              alt=""
-            />
-          </div>
-          <div
-            css={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              padding: '14px 0 14px 10px',
-            }}
-          >
-            <p>sdasd</p>
-            <p>$999</p>
-            <button
-              css={{
-                display: 'flex',
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-              }}
-            >
-              remove <FaTrash />
-            </button>
-          </div>
-          <div
-            css={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <button>
-              <FaPlus />
-            </button>
-            <span
-              css={{
-                margin: '10px 0',
-              }}
-            >
-              1
-            </span>
-            <button>
-              <FaMinus />
-            </button>
-          </div>
-        </li>
-        <li
-          css={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 3fr 1fr',
-            padding: '10px 0',
-          }}
-        >
-          <div>
-            <img
-              css={{
-                height: '100px',
-              }}
-              src="//images.ctfassets.net/5w7hgh9abc3b/R7aTIc1EzkljeiQL5g7iV/cd995371d09dc82c6c5eb9238a34e36a/food4.png"
-              alt=""
-            />
-          </div>
-          <div
-            css={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              padding: '14px 0 14px 10px',
-            }}
-          >
-            <p>sdasd</p>
-            <p>$999</p>
-            <button
-              css={{
-                display: 'flex',
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-              }}
-            >
-              remove <FaTrash />
-            </button>
-          </div>
-          <div
-            css={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <button>
-              <FaPlus />
-            </button>
-            <span
-              css={{
-                margin: '10px 0',
-              }}
-            >
-              1
-            </span>
-            <button>
-              <FaMinus />
-            </button>
-          </div>
-        </li>
-      </ul>
+      <CartProductsList products={cartItems} />
       <div
         css={{
           paddingBottom: '8rem',
@@ -221,7 +99,7 @@ const Cart = ({ children }) => {
         />
       </div>
     </aside>
-  );
+  ) : null;
 };
 
 export default Cart;

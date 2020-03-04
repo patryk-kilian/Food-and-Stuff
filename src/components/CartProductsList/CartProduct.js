@@ -1,12 +1,24 @@
 /**@jsx jsx */
 import { jsx } from '@emotion/core';
+import { useContext } from 'react';
 import { useTheme } from 'emotion-theming';
 import { FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
+import CartContext from '../../context/CartProvider/cartContext';
 
-const CartProduct = () => {
+const CartProduct = ({ product }) => {
   const theme = useTheme();
 
   const { colors } = theme;
+
+  const { name, image, price, id, amount } = product;
+
+  const cartContext = useContext(CartContext);
+
+  const {
+    decreaseItemAmount,
+    increaseItemAmount,
+    removeFromCart,
+  } = cartContext;
 
   return (
     <li
@@ -20,7 +32,7 @@ const CartProduct = () => {
           css={{
             height: '100px',
           }}
-          src="//images.ctfassets.net/5w7hgh9abc3b/R7aTIc1EzkljeiQL5g7iV/cd995371d09dc82c6c5eb9238a34e36a/food4.png"
+          src={image}
           alt=""
         />
       </div>
@@ -32,9 +44,10 @@ const CartProduct = () => {
           padding: '14px 0 14px 10px',
         }}
       >
-        <p>sdasd</p>
-        <p>$999</p>
+        <p>{name}</p>
+        <p>${price}</p>
         <button
+          onClick={() => removeFromCart(id)}
           css={{
             display: 'flex',
             justifyContent: 'flex-start',
@@ -52,7 +65,7 @@ const CartProduct = () => {
           justifyContent: 'center',
         }}
       >
-        <button>
+        <button onClick={() => increaseItemAmount(id)}>
           <FaPlus />
         </button>
         <span
@@ -60,9 +73,9 @@ const CartProduct = () => {
             margin: '10px 0',
           }}
         >
-          1
+          {amount}
         </span>
-        <button>
+        <button onClick={() => decreaseItemAmount(id, amount)}>
           <FaMinus />
         </button>
       </div>
