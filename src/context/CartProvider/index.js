@@ -7,6 +7,7 @@ import {
   INCREASE_ITEM_AMOUNT,
   DECREASE_ITEM_AMOUNT,
   SET_CART_AMOUNT,
+  SET_TOTAL_PRICE,
   TOGGLE_CART,
 } from './types';
 
@@ -14,19 +15,34 @@ const CartProvider = ({ children }) => {
   const initialState = {
     cartItems: [],
     cartAmount: 0,
+    totalPrice: 0,
     isCartOpen: false,
   };
 
   const [state, dispatch] = useReducer(CartReducer, initialState);
 
   useEffect(() => {
-    if (state.cartItems.length > 0) {
-      const cartAmount = state.cartItems[0].amount;
-      dispatch({
-        type: SET_CART_AMOUNT,
-        payload: cartAmount,
-      });
-    }
+    const newCartAmount = state.cartItems.reduce(
+      (total, item) => (total += item.amount),
+      0,
+    );
+
+    dispatch({
+      type: SET_CART_AMOUNT,
+      payload: newCartAmount,
+    });
+  }, [state.cartItems]);
+
+  useEffect(() => {
+    const newTotalPrice = state.cartItems.reduce(
+      (total, item) => (total += item.amount * item.price),
+      0,
+    );
+
+    dispatch({
+      type: SET_TOTAL_PRICE,
+      payload: newTotalPrice,
+    });
   }, [state.cartItems]);
 
   const toggleCart = () =>
@@ -96,6 +112,7 @@ const CartProvider = ({ children }) => {
         cartItems: state.cartItems,
         cartAmount: state.cartAmount,
         isCartOpen: state.isCartOpen,
+        totalPrice: state.totalPrice,
       }}
     >
       {children}

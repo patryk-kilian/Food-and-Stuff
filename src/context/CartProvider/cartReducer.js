@@ -4,6 +4,7 @@ import {
   INCREASE_ITEM_AMOUNT,
   DECREASE_ITEM_AMOUNT,
   SET_CART_AMOUNT,
+  SET_TOTAL_PRICE,
   TOGGLE_CART,
 } from './types';
 
@@ -38,6 +39,11 @@ export default (state, action) => {
       return {
         ...state,
         isCartOpen: action.payload,
+      };
+    case SET_TOTAL_PRICE:
+      return {
+        ...state,
+        totalPrice: action.payload,
       };
     default:
       return state;

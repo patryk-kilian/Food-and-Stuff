@@ -14,7 +14,13 @@ const Cart = () => {
 
   const cartContext = useContext(CartContext);
 
-  const { isCartOpen, toggleCart, cartItems } = cartContext;
+  const {
+    isCartOpen,
+    toggleCart,
+    cartItems,
+    totalPrice,
+    cartAmount,
+  } = cartContext;
 
   return isCartOpen ? (
     <aside
@@ -47,7 +53,7 @@ const Cart = () => {
             textTransform: 'uppercase',
           }}
         >
-          Your cart&nbsp;<span>(&nbsp;1&nbsp;)</span>
+          Your cart&nbsp;<span>(&nbsp;{cartAmount}&nbsp;)</span>
         </h3>
         <button
           onClick={() => toggleCart()}
@@ -87,7 +93,7 @@ const Cart = () => {
               color: colors.secondaryDarker,
             }}
           >
-            $9999
+            ${totalPrice}
           </span>
         </p>
         <Button icon={FaCreditCard} text="checkout" />
