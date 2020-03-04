@@ -9,6 +9,7 @@ import {
   SET_CART_AMOUNT,
   SET_TOTAL_PRICE,
   TOGGLE_CART,
+  CLEAR_CART,
 } from './types';
 
 const CartProvider = ({ children }) => {
@@ -24,7 +25,7 @@ const CartProvider = ({ children }) => {
   useEffect(() => {
     const newCartAmount = state.cartItems.reduce(
       (total, item) => (total += item.amount),
-      0,
+      0
     );
 
     dispatch({
@@ -36,7 +37,7 @@ const CartProvider = ({ children }) => {
   useEffect(() => {
     const newTotalPrice = state.cartItems.reduce(
       (total, item) => (total += item.amount * item.price),
-      0,
+      0
     );
 
     dispatch({
@@ -101,6 +102,12 @@ const CartProvider = ({ children }) => {
     });
   };
 
+  const clearCart = () =>
+    dispatch({
+      type: CLEAR_CART,
+      payload: [],
+    });
+
   return (
     <CartContext.Provider
       value={{
@@ -109,6 +116,7 @@ const CartProvider = ({ children }) => {
         toggleCart,
         increaseItemAmount,
         decreaseItemAmount,
+        clearCart,
         cartItems: state.cartItems,
         cartAmount: state.cartAmount,
         isCartOpen: state.isCartOpen,

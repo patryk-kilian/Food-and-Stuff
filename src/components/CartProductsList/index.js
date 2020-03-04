@@ -5,7 +5,11 @@ import CartProduct from './CartProduct';
 
 const CartProductsList = ({ products }) => {
   return (
-    <ul>
+    <ul
+      css={{
+        overflowY: 'scroll',
+      }}
+    >
       {products.length > 0 ? (
         products.map(product => (
           <CartProduct key={product.id} product={product} />

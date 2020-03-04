@@ -6,6 +6,7 @@ import {
   SET_CART_AMOUNT,
   SET_TOTAL_PRICE,
   TOGGLE_CART,
+  CLEAR_CART,
 } from './types';
 
 export default (state, action) => {
@@ -44,6 +45,11 @@ export default (state, action) => {
       return {
         ...state,
         totalPrice: action.payload,
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        cartItems: action.payload,
       };
     default:
       return state;

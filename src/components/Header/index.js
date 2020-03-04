@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { useContext } from 'react';
 import { useTheme } from 'emotion-theming';
-import { FaShoppingBag } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 import CartContext from '../../context/CartProvider/cartContext';
 
 const Header = () => {
@@ -62,7 +62,7 @@ const Header = () => {
               position: 'relative',
             }}
           >
-            <FaShoppingBag
+            <FaShoppingCart
               css={{
                 color: colors.white,
                 width: '2.5rem',

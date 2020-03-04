@@ -5,3 +5,4 @@ export const SET_CART_AMOUNT = 'SET_CART_AMOUNT';
 export const TOGGLE_CART = 'TOGGLE_CART';
 export const DECREASE_ITEM_AMOUNT = 'DECREASE_ITEM_AMOUNT';
 export const SET_TOTAL_PRICE = 'SET_TOTAL_PRICE';
+export const CLEAR_CART = 'CLEAR_CART';
