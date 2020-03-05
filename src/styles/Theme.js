@@ -8,6 +8,8 @@ const colors = {
   secondary: '#f07b3f',
   secondaryDarker: '#ee651f',
   white: '#fff',
+  green: '#83d13a',
+  red: '#ff454f',
 };
 
 const theme = {

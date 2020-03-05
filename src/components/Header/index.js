@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { useTheme } from 'emotion-theming';
 import { FaShoppingCart } from 'react-icons/fa';
 import CartContext from '../../context/CartProvider/cartContext';
+import { Link } from '@reach/router';
 
 const Header = () => {
   const theme = useTheme();
@@ -35,13 +36,17 @@ const Header = () => {
           alignItems: 'center',
         }}
       >
-        <div
-          css={{
-            fontSize: '40px',
-          }}
-        >
-          FS
-        </div>
+        <Link to='/'>
+          <h1
+            css={{
+              fontFamily: 'Lobster',
+              color: colors.secondaryDarker,
+              fontSize: '2.2rem',
+            }}
+          >
+            Food&Stuff
+          </h1>
+        </Link>
         <div
           css={{
             display: 'flex',
@@ -52,6 +57,7 @@ const Header = () => {
             css={{
               fontSize: '1.2rem',
               marginRight: '5px',
+              fontWeight: '700',
             }}
           >
             cart

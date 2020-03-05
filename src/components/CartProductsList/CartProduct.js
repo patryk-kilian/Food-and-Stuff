@@ -25,6 +25,7 @@ const CartProduct = ({ product }) => {
       css={{
         display: 'grid',
         gridTemplateColumns: '1fr 3fr 1fr',
+        padding: '5px',
       }}
     >
       <div>
@@ -33,7 +34,7 @@ const CartProduct = ({ product }) => {
             height: '100px',
           }}
           src={image}
-          alt=""
+          alt=''
         />
       </div>
       <div
@@ -44,17 +45,34 @@ const CartProduct = ({ product }) => {
           padding: '14px 0 14px 10px',
         }}
       >
-        <p>{name}</p>
-        <p>${price}</p>
+        <p
+          css={{
+            fontWeight: '500',
+          }}
+        >
+          {name}
+        </p>
+        <p
+          css={{
+            fontWeight: '700',
+            color: colors.secondary,
+          }}
+        >
+          ${price}
+        </p>
         <button
           onClick={() => removeFromCart(id)}
           css={{
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'center',
+            textTransform: 'uppercase',
+            fontWeight: '700',
+            color: colors.primary,
           }}
         >
-          remove <FaTrash />
+          remove&nbsp;
+          <FaTrash />
         </button>
       </div>
       <div
@@ -66,7 +84,11 @@ const CartProduct = ({ product }) => {
         }}
       >
         <button onClick={() => increaseItemAmount(id)}>
-          <FaPlus />
+          <FaPlus
+            css={{
+              color: colors.primary,
+            }}
+          />
         </button>
         <span
           css={{
@@ -76,7 +98,11 @@ const CartProduct = ({ product }) => {
           {amount}
         </span>
         <button onClick={() => decreaseItemAmount(id, amount)}>
-          <FaMinus />
+          <FaMinus
+            css={{
+              color: colors.primary,
+            }}
+          />
         </button>
       </div>
     </li>

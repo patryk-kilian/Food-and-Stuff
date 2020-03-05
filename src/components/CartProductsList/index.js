@@ -15,7 +15,15 @@ const CartProductsList = ({ products }) => {
           <CartProduct key={product.id} product={product} />
         ))
       ) : (
-        <p>Cart is empty</p>
+        <p
+          css={{
+            textAlign: 'center',
+            marginTop: '2rem',
+            fontSize: '1.4rem',
+          }}
+        >
+          Cart is empty
+        </p>
       )}
     </ul>
   );

@@ -1,46 +1,23 @@
 /**@jsx jsx */
 import { useContext } from 'react';
 import { jsx } from '@emotion/core';
-import { useTheme } from 'emotion-theming';
 import Category from '../../components/Category';
+import Container from '../../components/Container';
 import ProductsList from '../../components/ProductsList';
+import { PageHeading, PageSubheading } from '../../styles/Typography';
 import ProductsContext from '../../context/ProductsProvider/productsContext';
 
 const Home = () => {
-  const theme = useTheme();
   const productsContext = useContext(ProductsContext);
 
   const bestsellers = productsContext.products.filter(
     product => product.bestseller === true
   );
 
-  const { colors, container } = theme;
-
   return (
-    <main
-      css={{
-        maxWidth: container.base,
-        margin: '0 auto',
-        textAlign: 'center',
-        minHeight: '100vh',
-      }}
-    >
-      <h1
-        css={{
-          fontSize: '3rem',
-          marginTop: '2rem',
-        }}
-      >
-        Food and Stuff
-      </h1>
-      <h2
-        css={{
-          fontSize: '2rem',
-          textTransform: 'uppercase',
-        }}
-      >
-        Explore our categories
-      </h2>
+    <Container>
+      <PageHeading>Food and Stuff</PageHeading>
+      <PageSubheading>Explore our categories</PageSubheading>
       <div
         css={{
           display: 'grid',
@@ -52,16 +29,9 @@ const Home = () => {
         <Category name='stuff' />
         <Category name='clothes' />
       </div>
-      <h2
-        css={{
-          fontSize: '2rem',
-          textTransform: 'uppercase',
-        }}
-      >
-        Bestsellers
-      </h2>
+      <PageSubheading>Bestsellers</PageSubheading>
       <ProductsList products={bestsellers} />
-    </main>
+    </Container>
   );
 };
 

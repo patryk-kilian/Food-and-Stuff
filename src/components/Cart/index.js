@@ -1,6 +1,6 @@
 /**@jsx jsx */
 import { jsx } from '@emotion/core';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useTheme } from 'emotion-theming';
 import { FaTimes, FaCreditCard } from 'react-icons/fa';
 import CartContext from '../../context/CartProvider/cartContext';
@@ -23,6 +23,13 @@ const Cart = () => {
     cartAmount,
     clearCart,
   } = cartContext;
+
+  useEffect(() => {
+    if (isCartOpen) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => (document.body.style.overflow = 'unset');
+  }, [isCartOpen]);
 
   return (
     <AnimatePresence>

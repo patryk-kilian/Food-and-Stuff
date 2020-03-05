@@ -1,24 +1,22 @@
 /**@jsx jsx */
 import { jsx } from '@emotion/core';
 import { useContext } from 'react';
-import { useNavigate } from '@reach/router';
 import ProductsContext from '../../context/ProductsProvider/productsContext';
 import { PageHeading } from '../../styles/Typography';
 import ProductsList from '../../components/ProductsList';
 import Container from '../../components/Container';
+import BackButton from '../../components/BackButton';
 
 const Food = () => {
-  const navigate = useNavigate();
-
   const productsContext = useContext(ProductsContext);
 
   const products = productsContext.products.filter(
-    product => product.category === 'food',
+    product => product.category === 'food'
   );
 
   return (
     <Container>
-      <button onClick={() => navigate(-1)}>back</button>
+      <BackButton />
       <PageHeading>Food</PageHeading>
       <ProductsList products={products} />
     </Container>

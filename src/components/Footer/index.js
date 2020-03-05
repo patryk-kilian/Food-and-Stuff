@@ -14,6 +14,7 @@ const Footer = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        padding: '20px 0',
       }}
     >
       <p
@@ -21,7 +22,7 @@ const Footer = () => {
           color: '#fff',
         }}
       >
-        Patryk Kilian 2020
+        @Patryk Kilian 2020
       </p>
     </footer>
   );

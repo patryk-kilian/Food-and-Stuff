@@ -11,6 +11,8 @@ const Container = ({ children }) => {
       css={{
         maxWidth: container.base,
         margin: '0 auto',
+        minHeight: '100vh',
+        position: 'relative',
       }}
     >
       {children}

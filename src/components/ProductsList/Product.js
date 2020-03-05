@@ -42,6 +42,9 @@ const Product = ({ product }) => {
           '& button': {
             opacity: '1',
           },
+          '& img': {
+            transform: 'scale(0.9) rotate(3deg)',
+          },
         },
       }}
     >
@@ -74,29 +77,37 @@ const Product = ({ product }) => {
           color={theme.colors.primaryDarker}
           onClick={() => addToCart(product)}
         >
-          Add to cart <FaCartPlus />
+          Add to cart&nbsp;
+          <FaCartPlus />
         </StyledButton>
       </div>
 
-      <img src={image} alt="" />
+      <img
+        css={{
+          transition: 'transform .3s',
+        }}
+        src={image}
+        alt=''
+      />
       <p
         css={{
           textTransform: 'uppercase',
           fontSize: '1.1rem',
+          fontWeight: '600',
         }}
       >
         {name}
       </p>
       <p
         css={{
-          fontSize: '1.2rem',
+          fontSize: '1.4rem',
           color: colors.secondary,
           fontWeight: '700',
         }}
       >
         ${price}
       </p>
-      {bestseller ? (
+      {bestseller && (
         <span
           css={{
             position: 'absolute',
@@ -112,7 +123,7 @@ const Product = ({ product }) => {
         >
           bestseller
         </span>
-      ) : null}
+      )}
     </li>
   );
 };
