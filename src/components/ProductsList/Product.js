@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { useTheme } from 'emotion-theming';
 import { FaCartPlus } from 'react-icons/fa';
 import { StyledButton } from '../../styles/Button';
+import { Link } from '@reach/router';
 import CartContext from '../../context/CartProvider/cartContext';
 
 const Product = ({ product }) => {
@@ -17,6 +18,8 @@ const Product = ({ product }) => {
   const cartContext = useContext(CartContext);
 
   const { addToCart } = cartContext;
+
+  const ButtonLink = StyledButton.withComponent(Link);
 
   return (
     <li
@@ -43,6 +46,9 @@ const Product = ({ product }) => {
           '& button': {
             opacity: '1',
           },
+          '& a': {
+            opacity: '1',
+          },
           '& img': {
             transform: 'scale(0.9) rotate(3deg)',
           },
@@ -62,14 +68,15 @@ const Product = ({ product }) => {
           transform: 'translate(-50%,-50%)',
         }}
       >
-        <StyledButton
+        <ButtonLink
+          to={`/product/${id}`}
           css={{
             opacity: '0',
           }}
           color={theme.colors.primaryDarker}
         >
           Show details
-        </StyledButton>
+        </ButtonLink>
         <StyledButton
           css={{
             opacity: '0',

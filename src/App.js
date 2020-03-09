@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Food from './pages/Food';
 import Clothes from './pages/Clothes';
 import Stuff from './pages/Stuff';
+import ProductDetails from './pages/ProductDetails';
 import Theme from './styles/Theme';
 import Cart from './components/Cart';
 import CartMask from './components/Cart/CartMask';
@@ -20,10 +21,11 @@ const App = () => {
           <CartProvider>
             <Header />
             <Router>
-              <Home path="/" />
-              <Food path="/food" />
-              <Clothes path="clothes" />
-              <Stuff path="stuff/" />
+              <Home path='/' />
+              <Food path='/food' />
+              <Clothes path='/clothes' />
+              <Stuff path='/stuff' />
+              <ProductDetails path='/product/:id' />
             </Router>
             <Footer />
             <Cart />
