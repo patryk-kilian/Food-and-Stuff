@@ -12,6 +12,11 @@ const ProductsList = ({ products }) => {
         justifyItems: 'center',
         margin: '50px 0',
         rowGap: '50px',
+        '@media (max-width: 480px)': {
+          gridTemplateColumns: '1fr',
+          rowGap: '10px',
+          margin: '20px 0',
+        },
       }}
     >
       {products.map(product => (

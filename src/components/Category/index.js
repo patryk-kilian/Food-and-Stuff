@@ -24,6 +24,12 @@ const Category = ({ name }) => {
           ':hover': {
             background: colors.secondaryDarker,
           },
+          '@media (max-width: 480px)': {
+            margin: '10px auto',
+            height: '40px',
+            width: '80%',
+            fontSize: '.8rem',
+          },
         }}
       >
         <h2

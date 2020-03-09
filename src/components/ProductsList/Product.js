@@ -23,6 +23,7 @@ const Product = ({ product }) => {
       css={{
         position: 'relative',
         textAlign: 'center',
+        padding: '10px',
         '&::after': {
           content: `''`,
           width: '100%',
@@ -85,9 +86,12 @@ const Product = ({ product }) => {
       <img
         css={{
           transition: 'transform .3s',
+          '@media (max-width: 480px)': {
+            width: '200px',
+          },
         }}
         src={image}
-        alt=''
+        alt={name}
       />
       <p
         css={{

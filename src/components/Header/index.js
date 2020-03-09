@@ -19,7 +19,7 @@ const Header = () => {
     <header
       css={{
         backgroundColor: colors.primary,
-        padding: '10px 0',
+        padding: '10px',
         color: colors.white,
         position: 'sticky',
         top: '0',
@@ -42,6 +42,9 @@ const Header = () => {
               fontFamily: 'Lobster',
               color: colors.secondaryDarker,
               fontSize: '2.2rem',
+              '@media (max-width: 480px)': {
+                fontSize: '1.5rem',
+              },
             }}
           >
             Food&Stuff
@@ -51,6 +54,7 @@ const Header = () => {
           css={{
             display: 'flex',
             alignItems: 'center',
+            marginRight: '15px',
           }}
         >
           <p

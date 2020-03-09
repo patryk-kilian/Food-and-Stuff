@@ -23,6 +23,12 @@ const Home = () => {
           display: 'grid',
           gridTemplateColumns: '1fr 1fr 1fr',
           gap: '20px',
+          padding: '0 10px',
+          '@media (max-width: 480px)': {
+            gridTemplateColumns: '1fr',
+            gap: '0',
+            padding: '20px 10px',
+          },
         }}
       >
         <Category name='food' />

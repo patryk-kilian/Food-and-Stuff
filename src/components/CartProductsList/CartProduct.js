@@ -24,7 +24,7 @@ const CartProduct = ({ product }) => {
     <li
       css={{
         display: 'grid',
-        gridTemplateColumns: '1fr 3fr 1fr',
+        gridTemplateColumns: '100px 3fr 1fr',
         padding: '5px',
       }}
     >
