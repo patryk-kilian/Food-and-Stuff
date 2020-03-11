@@ -20,7 +20,7 @@ const App = () => {
         <ProductsProvider>
           <CartProvider>
             <Header />
-            <Router>
+            <Router primary={false}>
               <Home path="/" />
               <Food path="/food" />
               <Clothes path="/clothes" />
