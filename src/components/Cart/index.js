@@ -18,6 +18,7 @@ const Cart = () => {
     totalPrice,
     cartAmount,
     clearCart,
+    toggleCheckout,
   } = useContext(CartContext);
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const Cart = () => {
     <AnimatePresence>
       {isCartOpen && (
         <motion.aside
-          key="cart"
+          key='cart'
           initial={{ x: 400 }}
           animate={{ x: 0 }}
           exit={{ x: 400 }}
@@ -109,7 +110,13 @@ const Cart = () => {
                 ${totalPrice}
               </span>
             </p>
-            <StyledButton color={colors.primaryLight}>
+            <StyledButton
+              color={colors.primaryLight}
+              onClick={() => {
+                toggleCheckout();
+                toggleCart();
+              }}
+            >
               checkout&nbsp;
               <FaCreditCard />
             </StyledButton>

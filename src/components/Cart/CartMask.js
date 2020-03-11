@@ -11,7 +11,7 @@ const CartMask = () => {
     <AnimatePresence>
       {isCartOpen && (
         <motion.button
-          key="cartMask"
+          key='cartMask'
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

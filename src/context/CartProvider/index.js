@@ -12,6 +12,7 @@ const CartProvider = ({ children }) => {
   const [cartAmount, setCartAmount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isCartOpen, setCartOpen] = useState(false);
+  const [isCheckoutOpen, setCheckoutOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
@@ -20,7 +21,7 @@ const CartProvider = ({ children }) => {
   useEffect(() => {
     const newCartAmount = cartItems.reduce(
       (total, item) => (total += item.amount),
-      0,
+      0
     );
 
     setCartAmount(newCartAmount);
@@ -29,13 +30,15 @@ const CartProvider = ({ children }) => {
   useEffect(() => {
     const newTotalPrice = cartItems.reduce(
       (total, item) => (total += item.amount * item.price),
-      0,
+      0
     );
 
     setTotalPrice(newTotalPrice);
   }, [cartItems]);
 
   const toggleCart = () => setCartOpen(!isCartOpen);
+
+  const toggleCheckout = () => setCheckoutOpen(!isCheckoutOpen);
 
   const increaseItemAmount = id => {
     const newCart = cartItems.map(item => {
@@ -84,12 +87,14 @@ const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         toggleCart,
+        toggleCheckout,
         increaseItemAmount,
         decreaseItemAmount,
         clearCart,
         cartItems,
         cartAmount,
         isCartOpen,
+        isCheckoutOpen,
         totalPrice,
       }}
     >
