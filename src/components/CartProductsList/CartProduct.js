@@ -6,19 +6,13 @@ import { FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
 import CartContext from '../../context/CartProvider/cartContext';
 
 const CartProduct = ({ product }) => {
-  const theme = useTheme();
-
-  const { colors } = theme;
+  const { colors } = useTheme();
 
   const { name, image, price, id, amount } = product;
 
-  const cartContext = useContext(CartContext);
-
-  const {
-    decreaseItemAmount,
-    increaseItemAmount,
-    removeFromCart,
-  } = cartContext;
+  const { decreaseItemAmount, increaseItemAmount, removeFromCart } = useContext(
+    CartContext,
+  );
 
   return (
     <li
@@ -34,7 +28,7 @@ const CartProduct = ({ product }) => {
             height: '100px',
           }}
           src={image}
-          alt=''
+          alt=""
         />
       </div>
       <div

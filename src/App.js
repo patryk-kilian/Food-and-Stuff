@@ -21,11 +21,11 @@ const App = () => {
           <CartProvider>
             <Header />
             <Router>
-              <Home path='/' />
-              <Food path='/food' />
-              <Clothes path='/clothes' />
-              <Stuff path='/stuff' />
-              <ProductDetails path='/product/:id' />
+              <Home path="/" />
+              <Food path="/food" />
+              <Clothes path="/clothes" />
+              <Stuff path="/stuff" />
+              <ProductDetails path="/product/:id" />
             </Router>
             <Footer />
             <Cart />

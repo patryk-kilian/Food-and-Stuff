@@ -7,7 +7,7 @@ import { useTheme } from 'emotion-theming';
 const BackButton = () => {
   const navigate = useNavigate();
 
-  const theme = useTheme();
+  const { colors } = useTheme();
 
   return (
     <button
@@ -32,7 +32,7 @@ const BackButton = () => {
     >
       <FaArrowAltCircleLeft
         css={{
-          color: theme.colors.secondaryDarker,
+          color: colors.secondaryDarker,
           transition: 'transform .3s',
         }}
       />

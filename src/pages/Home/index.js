@@ -8,11 +8,9 @@ import { PageHeading, PageSubheading } from '../../styles/Typography';
 import ProductsContext from '../../context/ProductsProvider/productsContext';
 
 const Home = () => {
-  const productsContext = useContext(ProductsContext);
+  const { products } = useContext(ProductsContext);
 
-  const bestsellers = productsContext.products.filter(
-    product => product.bestseller === true
-  );
+  const bestsellers = products.filter(product => product.bestseller === true);
 
   return (
     <Container>
@@ -31,9 +29,9 @@ const Home = () => {
           },
         }}
       >
-        <Category name='food' />
-        <Category name='stuff' />
-        <Category name='clothes' />
+        <Category name="food" />
+        <Category name="stuff" />
+        <Category name="clothes" />
       </div>
       <PageSubheading>Bestsellers</PageSubheading>
       <ProductsList products={bestsellers} />

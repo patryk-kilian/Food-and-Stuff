@@ -4,9 +4,7 @@ import { useTheme } from 'emotion-theming';
 import { Link } from '@reach/router';
 
 const Category = ({ name }) => {
-  const theme = useTheme();
-
-  const { colors } = theme;
+  const { colors } = useTheme();
 
   return (
     <Link to={`/${name}`}>

@@ -9,11 +9,7 @@ import { StyledButton } from '../../styles/Button';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const Cart = () => {
-  const theme = useTheme();
-
-  const { colors } = theme;
-
-  const cartContext = useContext(CartContext);
+  const { colors } = useTheme();
 
   const {
     isCartOpen,
@@ -22,7 +18,7 @@ const Cart = () => {
     totalPrice,
     cartAmount,
     clearCart,
-  } = cartContext;
+  } = useContext(CartContext);
 
   useEffect(() => {
     if (isCartOpen) {
@@ -35,7 +31,7 @@ const Cart = () => {
     <AnimatePresence>
       {isCartOpen && (
         <motion.aside
-          key='cart'
+          key="cart"
           initial={{ x: 400 }}
           animate={{ x: 0 }}
           exit={{ x: 400 }}
@@ -113,13 +109,13 @@ const Cart = () => {
                 ${totalPrice}
               </span>
             </p>
-            <StyledButton color={theme.colors.primaryLight}>
+            <StyledButton color={colors.primaryLight}>
               checkout&nbsp;
               <FaCreditCard />
             </StyledButton>
             <StyledButton
               onClick={() => clearCart()}
-              color={theme.colors.primaryLight}
+              color={colors.primaryLight}
               css={{
                 marginTop: '10px',
               }}

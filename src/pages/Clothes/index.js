@@ -8,17 +8,17 @@ import Container from '../../components/Container';
 import BackButton from '../../components/BackButton';
 
 const Clothes = () => {
-  const productsContext = useContext(ProductsContext);
+  const { products } = useContext(ProductsContext);
 
-  const products = productsContext.products.filter(
-    product => product.category === 'clothes'
+  const filteredProducts = products.filter(
+    product => product.category === 'clothes',
   );
 
   return (
     <Container>
       <BackButton />
       <PageHeading>Clothes</PageHeading>
-      <ProductsList products={products} />
+      <ProductsList products={filteredProducts} />
     </Container>
   );
 };

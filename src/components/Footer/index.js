@@ -5,12 +5,12 @@ import { jsx } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
 
 const Footer = () => {
-  const theme = useTheme();
+  const { colors } = useTheme();
 
   return (
     <footer
       css={{
-        background: theme.colors.primary,
+        background: colors.primary,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

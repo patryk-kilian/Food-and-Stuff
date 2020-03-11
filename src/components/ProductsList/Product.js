@@ -9,15 +9,11 @@ import { Link } from '@reach/router';
 import CartContext from '../../context/CartProvider/cartContext';
 
 const Product = ({ product }) => {
-  const theme = useTheme();
+  const { colors } = useTheme();
 
   const { name, image, price, bestseller, id } = product;
 
-  const { colors } = theme;
-
-  const cartContext = useContext(CartContext);
-
-  const { addToCart } = cartContext;
+  const { addToCart } = useContext(CartContext);
 
   const ButtonLink = StyledButton.withComponent(Link);
 
@@ -73,7 +69,7 @@ const Product = ({ product }) => {
           css={{
             opacity: '0',
           }}
-          color={theme.colors.primaryDarker}
+          color={colors.primaryDarker}
         >
           Show details
         </ButtonLink>
@@ -82,7 +78,7 @@ const Product = ({ product }) => {
             opacity: '0',
             marginTop: '10px',
           }}
-          color={theme.colors.primaryDarker}
+          color={colors.primaryDarker}
           onClick={() => addToCart(product)}
         >
           Add to cart&nbsp;

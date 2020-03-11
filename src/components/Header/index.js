@@ -7,13 +7,9 @@ import CartContext from '../../context/CartProvider/cartContext';
 import { Link } from '@reach/router';
 
 const Header = () => {
-  const theme = useTheme();
+  const { colors, container } = useTheme();
 
-  const { colors, container } = theme;
-
-  const cartContext = useContext(CartContext);
-
-  const { cartAmount, toggleCart } = cartContext;
+  const { cartAmount, toggleCart } = useContext(CartContext);
 
   return (
     <header
@@ -36,7 +32,7 @@ const Header = () => {
           alignItems: 'center',
         }}
       >
-        <Link to='/'>
+        <Link to="/">
           <h1
             css={{
               fontFamily: 'Lobster',
