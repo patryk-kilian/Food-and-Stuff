@@ -7,6 +7,7 @@ import CartContext from '../../context/CartProvider/cartContext';
 import CartProductsList from '../CartProductsList/index';
 import { StyledButton } from '../../styles/Button';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Link } from '@reach/router';
 
 const Cart = () => {
   const { colors } = useTheme();
@@ -18,7 +19,6 @@ const Cart = () => {
     totalPrice,
     cartAmount,
     clearCart,
-    toggleCheckout,
   } = useContext(CartContext);
 
   useEffect(() => {
@@ -27,6 +27,8 @@ const Cart = () => {
     }
     return () => (document.body.style.overflow = 'unset');
   }, [isCartOpen]);
+
+  const ButtonLink = StyledButton.withComponent(Link);
 
   return (
     <AnimatePresence>
@@ -110,16 +112,10 @@ const Cart = () => {
                 ${totalPrice}
               </span>
             </p>
-            <StyledButton
-              color={colors.primaryLight}
-              onClick={() => {
-                toggleCheckout();
-                toggleCart();
-              }}
-            >
+            <ButtonLink color={colors.primaryLight} to='/checkout'>
               checkout&nbsp;
               <FaCreditCard />
-            </StyledButton>
+            </ButtonLink>
             <StyledButton
               onClick={() => clearCart()}
               color={colors.primaryLight}

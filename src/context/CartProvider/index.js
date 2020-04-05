@@ -12,7 +12,6 @@ const CartProvider = ({ children }) => {
   const [cartAmount, setCartAmount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isCartOpen, setCartOpen] = useState(false);
-  const [isCheckoutOpen, setCheckoutOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
@@ -38,10 +37,8 @@ const CartProvider = ({ children }) => {
 
   const toggleCart = () => setCartOpen(!isCartOpen);
 
-  const toggleCheckout = () => setCheckoutOpen(!isCheckoutOpen);
-
-  const increaseItemAmount = id => {
-    const newCart = cartItems.map(item => {
+  const increaseItemAmount = (id) => {
+    const newCart = cartItems.map((item) => {
       return item.id === id
         ? { ...item, amount: item.amount + 1 }
         : { ...item };
@@ -55,7 +52,7 @@ const CartProvider = ({ children }) => {
       removeFromCart(id);
       return;
     } else {
-      const newCart = cartItems.map(item => {
+      const newCart = cartItems.map((item) => {
         return item.id === id
           ? { ...item, amount: item.amount - 1 }
           : { ...item };
@@ -65,16 +62,16 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  const addToCart = item => {
-    const cartItem = cartItems.find(el => el.id === item.id);
+  const addToCart = (item) => {
+    const cartItem = cartItems.find((el) => el.id === item.id);
 
     cartItem
       ? increaseItemAmount(item.id)
       : setCartItems([...cartItems, { ...item, amount: 1 }]);
   };
 
-  const removeFromCart = id => {
-    const newCart = cartItems.filter(item => item.id !== id);
+  const removeFromCart = (id) => {
+    const newCart = cartItems.filter((item) => item.id !== id);
 
     setCartItems(newCart);
   };
@@ -87,14 +84,12 @@ const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         toggleCart,
-        toggleCheckout,
         increaseItemAmount,
         decreaseItemAmount,
         clearCart,
         cartItems,
         cartAmount,
         isCartOpen,
-        isCheckoutOpen,
         totalPrice,
       }}
     >
