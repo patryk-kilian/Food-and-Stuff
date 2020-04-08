@@ -5,17 +5,34 @@ import { useTheme } from 'emotion-theming';
 import CartContext from '../../context/CartProvider/cartContext';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { StyledButton } from '../../styles/Button';
+import FormField from './FormField';
 import axios from 'axios';
+import { FaCheckCircle } from 'react-icons/fa';
+import { Fragment } from 'react';
 
 const CheckoutForm = () => {
-  const [isProcessing, setProcessingTo] = useState(false);
+  const [isProcessing, setProcessing] = useState(false);
+  const [checkoutError, setCheckoutError] = useState(null);
+  const [isPaymentSucceed, setPaymentSucceed] = useState(false);
 
-  const { totalPrice, toggleCart, isCartOpen } = useContext(CartContext);
+  const { totalPrice } = useContext(CartContext);
 
   const { colors } = useTheme();
 
   const stripe = useStripe();
   const elements = useElements();
+
+  const handleCardDetailsChange = (ev) => {
+    ev.error ? setCheckoutError(ev.error.message) : setCheckoutError(null);
+  };
+
+  const paymentSucceed = () => {
+    setPaymentSucceed(true);
+
+    setTimeout(() => {
+      setPaymentSucceed(false);
+    }, 5000);
+  };
 
   const handleCheckoutSubmit = async (ev) => {
     ev.preventDefault();
@@ -25,54 +42,135 @@ const CheckoutForm = () => {
       email: ev.target.email.value,
     };
 
-    setProcessingTo(true);
+    setProcessing(true);
 
-    const { data } = await axios.post('/.netlify/functions/payment', {
-      amount: totalPrice * 100,
-    });
+    try {
+      if (!totalPrice) {
+        setCheckoutError('You have no items to checkout');
+        setProcessing(false);
+        return;
+      }
 
-    const { clientSecret } = data;
+      const { data } = await axios.post('/.netlify/functions/payment', {
+        amount: totalPrice * 100,
+      });
 
-    const cardElement = elements.getElement(CardElement);
+      const { clientSecret } = data;
 
-    const paymentMethodReq = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement,
-      billing_details: billingDetails,
-    });
+      const cardElement = elements.getElement(CardElement);
 
-    const confirmedCardPayment = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: paymentMethodReq.paymentMethod.id,
-    });
+      const paymentMethodReq = await stripe.createPaymentMethod({
+        type: 'card',
+        card: cardElement,
+        billing_details: billingDetails,
+      });
 
-    console.log(confirmedCardPayment);
+      if (paymentMethodReq.error) {
+        setCheckoutError(paymentMethodReq.error.message);
+        setProcessing(false);
+        return;
+      }
 
-    setProcessingTo(false);
+      const { error } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: paymentMethodReq.paymentMethod.id,
+      });
+
+      if (error) {
+        setCheckoutError(error.message);
+        setProcessing(false);
+        return;
+      }
+
+      setProcessing(false);
+      paymentSucceed();
+    } catch (err) {
+      setCheckoutError('Sorry server problems');
+      setProcessing(false);
+    }
+  };
+
+  const cardFieldStyles = {
+    base: {
+      fontSize: '16px',
+      color: '#383838',
+      fontWeight: '700',
+      iconColor: colors.primary,
+    },
+    invalid: {
+      iconColor: colors.red,
+      color: colors.red,
+    },
+    complete: {
+      iconColor: colors.green,
+    },
+  };
+
+  const cardFieldOptions = {
+    iconStyle: 'solid',
+    style: cardFieldStyles,
+    hidePostalCode: true,
   };
 
   return (
     <form onSubmit={handleCheckoutSubmit}>
-      <div>
-        <label htmlFor='Name'>Name</label>
-        <input type='text' name='name' placeholder='John Doe' required />
-      </div>
-      <div>
-        <label htmlFor='Email'>Email</label>
-        <input
-          name='email'
-          type='email'
-          placeholder='johndoe@gmail.com'
-          required
+      <FormField
+        name='name'
+        label='Name'
+        type='text'
+        placeholder='John Doe'
+        required
+      />
+      <FormField
+        name='email'
+        label='Email'
+        type='email'
+        placeholder='johndoe@example.com'
+        required
+      />
+      <div
+        css={{
+          padding: '12px 0',
+          borderBottom: `2px solid ${colors.primaryLight}`,
+        }}
+      >
+        <CardElement
+          options={cardFieldOptions}
+          onChange={handleCardDetailsChange}
         />
       </div>
-      <CardElement />
       <StyledButton
         color={colors.primaryLight}
+        style={{
+          marginTop: '1.1rem',
+          maxWidth: '100%',
+        }}
         type='submit'
         disabled={isProcessing || !stripe}
       >
-        {isProcessing ? 'Processing...' : `Pay ${totalPrice}`}
+        {isProcessing ? 'Processing...' : `Pay $${totalPrice}`}
       </StyledButton>
+      <div
+        css={{
+          marginTop: '1.1rem',
+          color: isPaymentSucceed ? colors.green : colors.red,
+          fontWeight: '700',
+          fontSize: '1.1rem',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        {!isPaymentSucceed ? checkoutError : null}
+        {isPaymentSucceed && (
+          <Fragment>
+            <FaCheckCircle
+              css={{
+                marginRight: '10px',
+              }}
+            />{' '}
+            Payment succeed
+          </Fragment>
+        )}
+      </div>
     </form>
   );
 };
