@@ -15,6 +15,7 @@ import CartProvider from './context/CartProvider';
 import { Router } from '@reach/router';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import ScrollToTop from './components/ScrollToTop';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
@@ -26,13 +27,15 @@ const App = () => {
           <CartProvider>
             <Elements stripe={stripePromise}>
               <Header />
-              <Router primary={false}>
-                <Home path='/' />
-                <Food path='/food' />
-                <Clothes path='/clothes' />
-                <Stuff path='/stuff' />
-                <Checkout path='/checkout' />
-                <ProductDetails path='/product/:id' />
+              <Router>
+                <ScrollToTop path='/'>
+                  <Home path='/' />
+                  <Food path='/food' />
+                  <Clothes path='/clothes' />
+                  <Stuff path='/stuff' />
+                  <Checkout path='/checkout' />
+                  <ProductDetails path='/product/:id' />
+                </ScrollToTop>
               </Router>
               <Footer />
               <Cart />

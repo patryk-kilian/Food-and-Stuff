@@ -7,11 +7,12 @@ import { PageHeading } from '../../styles/Typography';
 import Container from '../../components/Container';
 import BackButton from '../../components/BackButton';
 import CheckoutForm from '../../components/CheckoutForm';
+import CheckoutProductList from '../../components/CheckoutProductsList';
 
 const Checkout = () => {
-  const { toggleCart, isCartOpen } = useContext(CartContext);
-
-  const { colors } = useTheme();
+  const { toggleCart, isCartOpen, cartAmount, cartItems } = useContext(
+    CartContext
+  );
 
   useEffect(() => {
     isCartOpen && toggleCart();
@@ -26,10 +27,26 @@ const Checkout = () => {
         css={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
+          margin: '50px 0',
+          '@media (max-width: 1200px)': {
+            padding: '0 10px',
+          },
+          '@media (max-width: 800px)': {
+            gridTemplateColumns: '1fr',
+          },
         }}
       >
         <div>
-          <h1>prods</h1>
+          <p
+            css={{
+              fontSize: '1.4rem',
+              fontWeight: '500',
+              textAlign: 'center',
+            }}
+          >
+            Your cart ({cartAmount} items)
+          </p>
+          <CheckoutProductList products={cartItems} />
         </div>
         <div>
           <CheckoutForm />

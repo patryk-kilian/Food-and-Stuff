@@ -1,6 +1,6 @@
 /**@jsx jsx */
 import { jsx } from '@emotion/core';
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef } from 'react';
 import { useTheme } from 'emotion-theming';
 import CartContext from '../../context/CartProvider/cartContext';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
@@ -8,6 +8,7 @@ import { StyledButton } from '../../styles/Button';
 import FormField from './FormField';
 import axios from 'axios';
 import { FaCheckCircle } from 'react-icons/fa';
+import { FaExclamationCircle } from 'react-icons/fa';
 import { Fragment } from 'react';
 
 const CheckoutForm = () => {
@@ -15,12 +16,14 @@ const CheckoutForm = () => {
   const [checkoutError, setCheckoutError] = useState(null);
   const [isPaymentSucceed, setPaymentSucceed] = useState(false);
 
-  const { totalPrice } = useContext(CartContext);
+  const { totalPrice, clearCart } = useContext(CartContext);
 
   const { colors } = useTheme();
 
   const stripe = useStripe();
   const elements = useElements();
+
+  const formRef = useRef();
 
   const handleCardDetailsChange = (ev) => {
     ev.error ? setCheckoutError(ev.error.message) : setCheckoutError(null);
@@ -28,6 +31,8 @@ const CheckoutForm = () => {
 
   const paymentSucceed = () => {
     setPaymentSucceed(true);
+    formRef.current.reset();
+    clearCart();
 
     setTimeout(() => {
       setPaymentSucceed(false);
@@ -83,6 +88,7 @@ const CheckoutForm = () => {
 
       setProcessing(false);
       paymentSucceed();
+      cardElement.clear();
     } catch (err) {
       setCheckoutError('Sorry server problems');
       setProcessing(false);
@@ -112,7 +118,7 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form onSubmit={handleCheckoutSubmit}>
+    <form onSubmit={handleCheckoutSubmit} ref={formRef}>
       <FormField
         name='name'
         label='Name'
@@ -159,7 +165,16 @@ const CheckoutForm = () => {
           alignItems: 'center',
         }}
       >
-        {!isPaymentSucceed ? checkoutError : null}
+        {!isPaymentSucceed && checkoutError ? (
+          <Fragment>
+            <FaExclamationCircle
+              css={{
+                marginRight: '10px',
+              }}
+            />
+            {checkoutError}
+          </Fragment>
+        ) : null}
         {isPaymentSucceed && (
           <Fragment>
             <FaCheckCircle

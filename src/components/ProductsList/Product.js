@@ -15,8 +15,6 @@ const Product = ({ product }) => {
 
   const { addToCart } = useContext(CartContext);
 
-  const ButtonLink = StyledButton.withComponent(Link);
-
   return (
     <li
       css={{
@@ -64,15 +62,6 @@ const Product = ({ product }) => {
           transform: 'translate(-50%,-50%)',
         }}
       >
-        <ButtonLink
-          to={`/product/${id}`}
-          css={{
-            opacity: '0',
-          }}
-          color={colors.primaryDarker}
-        >
-          Show details
-        </ButtonLink>
         <StyledButton
           css={{
             opacity: '0',
