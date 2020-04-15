@@ -5,15 +5,41 @@ import { useContext } from 'react';
 import { useTheme } from 'emotion-theming';
 import { FaCartPlus } from 'react-icons/fa';
 import { StyledButton } from '../../styles/Button';
-import { Link } from '@reach/router';
 import CartContext from '../../context/CartProvider/cartContext';
+import NotificationContext from '../../context/NotificationsProvider/notificationsContext';
+import {
+  ADDED_TO_CART_MESSAGE,
+  ALREADY_IN_CART_MESSAGE,
+  SUCCESS,
+  INFO,
+} from '../../context/NotificationsProvider/notificationsConstants';
 
 const Product = ({ product }) => {
   const { colors } = useTheme();
 
   const { name, image, price, bestseller, id } = product;
 
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, cartItems } = useContext(CartContext);
+
+  const cartProduct = cartItems.find((item) => item.id === id);
+
+  const { triggerNotification } = useContext(NotificationContext);
+
+  const handleAddToCartClick = () => {
+    addToCart(product);
+
+    cartProduct
+      ? triggerNotification({
+          id: Date.now() + Math.random(),
+          message: ALREADY_IN_CART_MESSAGE,
+          type: INFO,
+        })
+      : triggerNotification({
+          id: Date.now() + Math.random(),
+          message: ADDED_TO_CART_MESSAGE,
+          type: SUCCESS,
+        });
+  };
 
   return (
     <li
@@ -68,7 +94,7 @@ const Product = ({ product }) => {
             marginTop: '10px',
           }}
           color={colors.primaryDarker}
-          onClick={() => addToCart(product)}
+          onClick={handleAddToCartClick}
         >
           Add to cart&nbsp;
           <FaCartPlus />

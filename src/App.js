@@ -12,10 +12,12 @@ import Cart from './components/Cart';
 import CartMask from './components/Cart/CartMask';
 import ProductsProvider from './context/ProductsProvider';
 import CartProvider from './context/CartProvider';
+import NotificationsProvider from './context/NotificationsProvider';
 import { Router } from '@reach/router';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import ScrollToTop from './components/ScrollToTop';
+import Notifications from './components/Notifications';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
@@ -25,22 +27,25 @@ const App = () => {
       <Theme>
         <ProductsProvider>
           <CartProvider>
-            <Elements stripe={stripePromise}>
-              <Header />
-              <Router>
-                <ScrollToTop path='/'>
-                  <Home path='/' />
-                  <Food path='/food' />
-                  <Clothes path='/clothes' />
-                  <Stuff path='/stuff' />
-                  <Checkout path='/checkout' />
-                  <ProductDetails path='/product/:id' />
-                </ScrollToTop>
-              </Router>
-              <Footer />
-              <Cart />
-              <CartMask />
-            </Elements>
+            <NotificationsProvider>
+              <Elements stripe={stripePromise}>
+                <Header />
+                <Notifications />
+                <Router>
+                  <ScrollToTop path='/'>
+                    <Home path='/' />
+                    <Food path='/food' />
+                    <Clothes path='/clothes' />
+                    <Stuff path='/stuff' />
+                    <Checkout path='/checkout' />
+                    <ProductDetails path='/product/:id' />
+                  </ScrollToTop>
+                </Router>
+                <Footer />
+                <Cart />
+                <CartMask />
+              </Elements>
+            </NotificationsProvider>
           </CartProvider>
         </ProductsProvider>
       </Theme>
