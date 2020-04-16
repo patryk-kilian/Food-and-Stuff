@@ -24,14 +24,8 @@ const Notification = ({ notification, removeNotification }) => {
   return (
     <div
       css={{
-        maxWidth: '500px',
-        width: '100%',
-        height: '50px',
-        position: 'fixed',
-        top: '25px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        zIndex: '99',
+        position: 'relative',
+        minHeight: '50px',
         background: '#fff',
         display: 'flex',
         alignItems: 'center',
@@ -41,6 +35,7 @@ const Notification = ({ notification, removeNotification }) => {
         overflow: 'hidden',
         animationName: fadeIn,
         animationDuration: '.3s',
+        marginTop: '5px',
       }}
     >
       <p

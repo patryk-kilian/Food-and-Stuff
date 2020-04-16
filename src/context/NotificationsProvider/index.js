@@ -5,17 +5,21 @@ const NotificationsProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
 
   const removeNotification = (id) => {
-    const updatedNotifications = notifications.filter(
-      (notification) => id !== notification.id
-    );
+    setNotifications((prevNotifications) => {
+      const updatedNotifications = prevNotifications.filter(
+        (notification) => id !== notification.id
+      );
 
-    setNotifications([...updatedNotifications]);
+      return updatedNotifications;
+    });
   };
 
   const triggerNotification = (notification) => {
     setNotifications([...notifications, notification]);
 
-    // removeNotification(notification.id);
+    setTimeout(() => {
+      removeNotification(notification.id);
+    }, 3000);
   };
 
   return (
