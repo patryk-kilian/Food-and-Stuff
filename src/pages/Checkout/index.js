@@ -1,13 +1,14 @@
 /**@jsx jsx */
 import { jsx } from '@emotion/core';
 import { useEffect, useContext } from 'react';
-import { useTheme } from 'emotion-theming';
-import CartContext from '../../context/CartProvider/cartContext';
-import { PageHeading } from '../../styles/Typography';
+
 import Container from '../../components/Container';
 import BackButton from '../../components/BackButton';
 import CheckoutForm from '../../components/CheckoutForm';
 import CheckoutProductList from '../../components/CheckoutProductsList';
+
+import CartContext from '../../context/CartProvider/cartContext';
+import { PageHeading } from '../../styles/Typography';
 
 const Checkout = () => {
   const { toggleCart, isCartOpen, cartAmount, cartItems } = useContext(
@@ -22,14 +23,14 @@ const Checkout = () => {
   return (
     <Container>
       <BackButton />
-      <PageHeading>Checkout </PageHeading>
+      <PageHeading>Checkout</PageHeading>
       <div
         css={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
-          margin: '50px 0',
+          margin: '3.125rem 0',
           '@media (max-width: 1200px)': {
-            padding: '0 10px',
+            padding: '0 0.625rem',
           },
           '@media (max-width: 800px)': {
             gridTemplateColumns: '1fr',

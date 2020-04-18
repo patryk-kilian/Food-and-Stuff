@@ -1,36 +1,26 @@
 /**@jsx jsx */
 import { jsx } from '@emotion/core';
-import { useContext } from 'react';
-import { useTheme } from 'emotion-theming';
-import { FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
-import CartContext from '../../context/CartProvider/cartContext';
 
-const CheckoutProduct = ({ product }) => {
-  const { colors } = useTheme();
-
-  const { name, image, price, id, amount } = product;
-
-  // const { decreaseItemAmount, increaseItemAmount, removeFromCart } = useContext(
-  //   CartContext
-  // );
+const CheckoutProduct = ({ product = {} }) => {
+  const { name, image, price, amount } = product;
 
   return (
     <li
       css={{
         display: 'grid',
-        gridTemplateColumns: '100px 5fr 1fr 2fr',
+        gridTemplateColumns: '6.25rem 5fr 1fr 2fr',
         padding: '5px',
         alignItems: 'center',
         fontWeight: '700',
         '@media (max-width: 800px)': {
-          gridTemplateColumns: '50px 2fr 1fr 1fr',
+          gridTemplateColumns: '3.125rem 2fr 1fr 1fr',
         },
       }}
     >
       <div>
         <img
           css={{
-            maxWidth: '100px',
+            maxWidth: '6.25rem',
             width: '100%',
           }}
           src={image}

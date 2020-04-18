@@ -14,7 +14,7 @@ const Footer = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '20px 0',
+        padding: '1.25rem 0',
       }}
     >
       <p

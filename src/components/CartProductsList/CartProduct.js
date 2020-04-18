@@ -5,30 +5,30 @@ import { useTheme } from 'emotion-theming';
 import { FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
 import CartContext from '../../context/CartProvider/cartContext';
 
-const CartProduct = ({ product }) => {
+const CartProduct = ({ product = {} }) => {
   const { colors } = useTheme();
 
   const { name, image, price, id, amount } = product;
 
   const { decreaseItemAmount, increaseItemAmount, removeFromCart } = useContext(
-    CartContext,
+    CartContext
   );
 
   return (
     <li
       css={{
         display: 'grid',
-        gridTemplateColumns: '100px 3fr 1fr',
+        gridTemplateColumns: '6.25rem 3fr 1fr',
         padding: '5px',
       }}
     >
       <div>
         <img
           css={{
-            height: '100px',
+            height: '6.25rem',
           }}
           src={image}
-          alt=""
+          alt=''
         />
       </div>
       <div
@@ -36,7 +36,7 @@ const CartProduct = ({ product }) => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          padding: '14px 0 14px 10px',
+          padding: '0.875rem 0 0.875rem 0.625rem',
         }}
       >
         <p
@@ -86,7 +86,7 @@ const CartProduct = ({ product }) => {
         </button>
         <span
           css={{
-            margin: '10px 0',
+            margin: '0.625rem 0',
           }}
         >
           {amount}

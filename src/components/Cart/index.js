@@ -1,12 +1,12 @@
 /**@jsx jsx */
 import { jsx } from '@emotion/core';
 import { useContext, useEffect } from 'react';
-import { useTheme } from 'emotion-theming';
-import { FaTimes, FaCreditCard } from 'react-icons/fa';
 import CartContext from '../../context/CartProvider/cartContext';
-import CartProductsList from '../CartProductsList/index';
+import CartProductsList from '../CartProductsList';
 import { StyledButton } from '../../styles/Button';
 import { Link } from '@reach/router';
+import { useTheme } from 'emotion-theming';
+import { FaTimes, FaCreditCard } from 'react-icons/fa';
 
 const Cart = () => {
   const { colors } = useTheme();
@@ -72,7 +72,7 @@ const Cart = () => {
             justifyContent: 'center',
             alignItems: 'center',
             position: 'absolute',
-            right: '20px',
+            right: '1.25rem',
             color: '#fff',
           }}
         >
@@ -82,7 +82,7 @@ const Cart = () => {
       <CartProductsList products={cartItems} />
       <div
         css={{
-          paddingTop: '10px',
+          paddingTop: '0.625rem',
           paddingBottom: '4rem',
           display: 'flex',
           flexDirection: 'column',
@@ -94,7 +94,7 @@ const Cart = () => {
             textTransform: 'uppercase',
             fontSize: '1.5rem',
             fontWeight: '500',
-            marginBottom: '10px',
+            marginBottom: '0.625rem',
           }}
         >
           total:{' '}
@@ -114,7 +114,7 @@ const Cart = () => {
           onClick={() => clearCart()}
           color={colors.primaryLight}
           css={{
-            marginTop: '10px',
+            marginTop: '0.625rem',
           }}
         >
           clear cart

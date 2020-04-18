@@ -13,8 +13,8 @@ const BackButton = () => {
     <button
       css={{
         position: 'absolute',
-        top: '-20px',
-        left: '20px',
+        top: '-1.25rem',
+        left: '1.25rem',
         fontSize: '1.5rem',
         textTransform: 'uppercase',
         display: 'flex',

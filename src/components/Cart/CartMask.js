@@ -1,8 +1,8 @@
 /**@jsx jsx */
 import { jsx } from '@emotion/core';
 import { useContext } from 'react';
-import CartContext from '../../context/CartProvider/cartContext';
 import { AnimatePresence, motion } from 'framer-motion';
+import CartContext from '../../context/CartProvider/cartContext';
 
 const CartMask = () => {
   const { isCartOpen, toggleCart } = useContext(CartContext);

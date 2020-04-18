@@ -15,7 +15,7 @@ const NotificationsProvider = ({ children }) => {
   };
 
   const triggerNotification = (notification) => {
-    setNotifications([...notifications, notification]);
+    setNotifications([notification, ...notifications]);
 
     setTimeout(() => {
       removeNotification(notification.id);

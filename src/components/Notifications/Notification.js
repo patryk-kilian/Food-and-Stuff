@@ -1,6 +1,7 @@
 /**@jsx jsx */
-import { jsx, keyframes } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
+import { motion } from 'framer-motion';
 
 const Notification = ({ notification, removeNotification }) => {
   const { message, id, type } = notification;
@@ -12,30 +13,30 @@ const Notification = ({ notification, removeNotification }) => {
     success: colors.green,
   };
 
-  const fadeIn = keyframes({
-    from: {
-      opacity: '0',
-    },
-    to: {
-      opacity: '1',
-    },
-  });
-
   return (
-    <div
+    <motion.div
+      key={id}
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ x: 100, opacity: 0 }}
       css={{
         position: 'relative',
-        minHeight: '50px',
+        minHeight: '3.125rem',
         background: '#fff',
         display: 'flex',
         alignItems: 'center',
-        padding: '0 20px',
+        padding: '0 1.25rem',
         borderRadius: '5px',
         boxShadow: '0 1px 3px rgba(0,0,0,.15)',
         overflow: 'hidden',
-        animationName: fadeIn,
-        animationDuration: '.3s',
-        marginTop: '5px',
+        marginTop: '6px',
+        marginLeft: '1rem',
+        marginRight: '1rem',
+        maxWidth: '31.25rem',
+        width: '100%',
+        '@media (max-width: 480px)': {
+          fontSize: '0.75rem',
+        },
       }}
     >
       <p
@@ -51,7 +52,7 @@ const Notification = ({ notification, removeNotification }) => {
         css={{
           position: 'absolute',
           right: '0',
-          width: '40px',
+          width: '2.5rem',
           background: notificationColors[type],
           height: '100%',
           color: '#fff',
@@ -59,7 +60,7 @@ const Notification = ({ notification, removeNotification }) => {
       >
         x
       </button>
-    </div>
+    </motion.div>
   );
 };
 

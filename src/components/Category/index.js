@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
 import { Link } from '@reach/router';
 
-const Category = ({ name }) => {
+const Category = ({ name = '' }) => {
   const { colors } = useTheme();
 
   return (
@@ -11,20 +11,20 @@ const Category = ({ name }) => {
       <div
         css={{
           background: colors.secondary,
-          height: '100px',
+          height: '6.25rem',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           color: colors.white,
-          margin: '50px 0',
-          borderRadius: '10px',
+          margin: '3.125rem 0',
+          borderRadius: '0.625rem',
           transition: 'background .2s',
           ':hover': {
             background: colors.secondaryDarker,
           },
           '@media (max-width: 480px)': {
-            margin: '10px auto',
-            height: '40px',
+            margin: '0.625rem auto',
+            height: '2.5rem',
             width: '80%',
             fontSize: '.8rem',
           },

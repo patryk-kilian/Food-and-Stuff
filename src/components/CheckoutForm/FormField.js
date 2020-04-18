@@ -12,7 +12,7 @@ const FormField = ({ label, type, name, placeholder, required }) => {
         justifyContent: 'center',
         alignItems: 'center',
         margin: '1rem 0',
-        padding: '12px 0',
+        padding: '0.75rem 0',
         borderBottom: `2px solid ${colors.primaryLight}`,
       }}
     >

@@ -1,20 +1,29 @@
 /**@jsx jsx */
 import { jsx } from '@emotion/core';
-import { useContext, useState, useRef } from 'react';
-import { useTheme } from 'emotion-theming';
-import CartContext from '../../context/CartProvider/cartContext';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { StyledButton } from '../../styles/Button';
-import FormField from './FormField';
+import { useContext, useState, useRef, Fragment } from 'react';
 import axios from 'axios';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+
+import FormField from './FormField';
+
+import { StyledButton } from '../../styles/Button';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FaExclamationCircle } from 'react-icons/fa';
-import { Fragment } from 'react';
+import { useTheme } from 'emotion-theming';
+
+import CartContext from '../../context/CartProvider/cartContext';
+import NotificationContext from '../../context/NotificationsProvider/notificationsContext';
+import {
+  PAYMENT_SUCCEED_MESSAGE,
+  SUCCESS,
+} from '../../context/NotificationsProvider/notificationsConstants';
 
 const CheckoutForm = () => {
   const [isProcessing, setProcessing] = useState(false);
   const [checkoutError, setCheckoutError] = useState(null);
   const [isPaymentSucceed, setPaymentSucceed] = useState(false);
+
+  const { triggerNotification } = useContext(NotificationContext);
 
   const { totalPrice, clearCart } = useContext(CartContext);
 
@@ -33,6 +42,11 @@ const CheckoutForm = () => {
     setPaymentSucceed(true);
     formRef.current.reset();
     clearCart();
+    triggerNotification({
+      id: Date.now() + Math.random(),
+      message: PAYMENT_SUCCEED_MESSAGE,
+      type: SUCCESS,
+    });
 
     setTimeout(() => {
       setPaymentSucceed(false);
@@ -97,7 +111,7 @@ const CheckoutForm = () => {
 
   const cardFieldStyles = {
     base: {
-      fontSize: '16px',
+      fontSize: '1rem',
       color: '#383838',
       fontWeight: '700',
       iconColor: colors.primary,
@@ -135,7 +149,7 @@ const CheckoutForm = () => {
       />
       <div
         css={{
-          padding: '12px 0',
+          padding: '0.75rem 0',
           borderBottom: `2px solid ${colors.primaryLight}`,
         }}
       >
@@ -169,7 +183,7 @@ const CheckoutForm = () => {
           <Fragment>
             <FaExclamationCircle
               css={{
-                marginRight: '10px',
+                marginRight: '0.625rem',
               }}
             />
             {checkoutError}
@@ -179,7 +193,7 @@ const CheckoutForm = () => {
           <Fragment>
             <FaCheckCircle
               css={{
-                marginRight: '10px',
+                marginRight: '0.625rem',
               }}
             />{' '}
             Payment succeed

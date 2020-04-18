@@ -1,8 +1,10 @@
 /**@jsx jsx */
 import { jsx } from '@emotion/core';
 import { useContext } from 'react';
-import NotificationContext from '../../context/NotificationsProvider/notificationsContext';
+import { AnimatePresence } from 'framer-motion';
+
 import Notification from './Notification';
+import NotificationContext from '../../context/NotificationsProvider/notificationsContext';
 
 const Notifications = () => {
   const { notifications, removeNotification } = useContext(NotificationContext);
@@ -11,25 +13,32 @@ const Notifications = () => {
     <div
       css={{
         position: 'fixed',
-        top: '25px',
+        top: '1.625rem',
         transform: 'translateX(-50%)',
+        zIndex: '99',
+        pointerEvents: 'none',
         left: '50%',
         display: 'flex',
         flexDirection: 'column',
-        zIndex: '99',
-        maxWidth: '500px',
+        alignItems: 'center',
         width: '100%',
-        height: '115px',
-        overflow: 'hidden',
+        maxWidth: '50rem',
+        height: '7.25rem',
+        overflowY: 'hidden',
+        '@media (max-width: 500px)': {
+          padding: '0 0.625rem',
+        },
       }}
     >
-      {notifications.map((notification) => (
-        <Notification
-          key={notification.id}
-          notification={notification}
-          removeNotification={removeNotification}
-        />
-      ))}
+      <AnimatePresence>
+        {notifications.map((notification) => (
+          <Notification
+            key={notification.id}
+            notification={notification}
+            removeNotification={removeNotification}
+          />
+        ))}
+      </AnimatePresence>
     </div>
   );
 };

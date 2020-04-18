@@ -27,10 +27,12 @@ const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   useEffect(() => {
-    const newTotalPrice = cartItems.reduce(
+    let newTotalPrice = cartItems.reduce(
       (total, item) => (total += item.amount * item.price),
       0
     );
+
+    newTotalPrice = parseFloat(newTotalPrice.toFixed(2));
 
     setTotalPrice(newTotalPrice);
   }, [cartItems]);

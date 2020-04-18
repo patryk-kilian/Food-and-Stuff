@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 
 import CartProduct from './CartProduct';
 
-const CartProductsList = ({ products }) => {
+const CartProductsList = ({ products = [] }) => {
   return (
     <ul
       css={{
@@ -11,7 +11,7 @@ const CartProductsList = ({ products }) => {
       }}
     >
       {products.length > 0 ? (
-        products.map(product => (
+        products.map((product) => (
           <CartProduct key={product.id} product={product} />
         ))
       ) : (

@@ -1,10 +1,10 @@
 /**@jsx jsx */
 import { jsx } from '@emotion/core';
 import { useContext } from 'react';
-import { useTheme } from 'emotion-theming';
+import { Link } from '@reach/router';
 import { FaShoppingCart } from 'react-icons/fa';
 import CartContext from '../../context/CartProvider/cartContext';
-import { Link } from '@reach/router';
+import { useTheme } from 'emotion-theming';
 
 const Header = () => {
   const { colors, container } = useTheme();
@@ -15,7 +15,7 @@ const Header = () => {
     <header
       css={{
         backgroundColor: colors.primary,
-        padding: '10px',
+        padding: '0.625rem',
         color: colors.white,
         position: 'sticky',
         top: '0',
@@ -32,7 +32,7 @@ const Header = () => {
           alignItems: 'center',
         }}
       >
-        <Link to="/">
+        <Link to='/'>
           <h1
             css={{
               fontFamily: 'Lobster',
@@ -50,7 +50,7 @@ const Header = () => {
           css={{
             display: 'flex',
             alignItems: 'center',
-            marginRight: '15px',
+            marginRight: '1rem',
           }}
         >
           <p
@@ -80,11 +80,11 @@ const Header = () => {
                 position: 'absolute',
                 fontSize: '1.1rem',
                 top: '-5px',
-                right: '-15px',
+                right: '-1rem',
                 background: colors.secondary,
                 color: colors.white,
-                width: '25px',
-                height: '25px',
+                width: '1.625rem',
+                height: '1.625rem',
                 borderRadius: '5px',
                 display: 'flex',
                 justifyContent: 'center',
