@@ -34,6 +34,7 @@ const Notification = ({ notification, removeNotification }) => {
         marginRight: '1rem',
         maxWidth: '31.25rem',
         width: '100%',
+        pointerEvents: 'auto',
         '@media (max-width: 480px)': {
           fontSize: '0.75rem',
         },
