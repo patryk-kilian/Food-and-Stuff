@@ -5,8 +5,6 @@ exports.handler = async (event, context, callback) => {
     return callback(null, { statusCode: 405, body: 'Method Not Allowed' });
   }
 
-  console.log(process.env);
-
   const data = JSON.parse(event.body);
 
   const { amount } = data;
